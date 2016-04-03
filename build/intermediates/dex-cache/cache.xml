@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/pre-dexed/release/com.android.support-support-vector-drawable-23.2.1_32bc39d423f7df2466dde10cd03c9a6ed48ccdab.jar" />
+    </item>
+    <item
+        jar="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-alpha1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9aaaea3a89040f8176f810c85e288fc74d5d1f12">
+        <dex dex="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-24.0.0-alpha1_858759e2e9bc3a5cd542b05e0519531dc433e9d4.jar" />
+    </item>
+    <item
+        jar="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/pre-dexed/release/com.android.support-appcompat-v7-23.2.1_c3119786f51ad4757926f81481f03e0f398cb1df.jar" />
+    </item>
+    <item
+        jar="/Users/ndadheec/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0-alpha1/support-annotations-24.0.0-alpha1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b8062546971a3d196343232a19a3c0016272ba47">
+        <dex dex="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/pre-dexed/release/support-annotations-24.0.0-alpha1_db5d8d61a8dca32f816b12a011e724face61dfad.jar" />
+    </item>
+    <item
+        jar="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-alpha1/jars/libs/internal_impl-24.0.0-alpha1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e57fba0a2d57d3501d8f4ff44c23092978804845">
+        <dex dex="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/pre-dexed/release/internal_impl-24.0.0-alpha1_299be9329c4bbe59c407aa1acb479e72c118813d.jar" />
+    </item>
+    <item
+        jar="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="/Users/ndadheec/AndroidStudioProjects/Howdy/app/build/intermediates/pre-dexed/release/com.android.support-animated-vector-drawable-23.2.1_6bd7196764e9c92d95d0b7e4161db4fd6dc1d83f.jar" />
+    </item>
+
+</items>
