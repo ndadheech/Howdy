@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/rachhale/AndroidStudioProjects/Howdy/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/rachhale/AndroidStudioProjects/Howdy/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/rachhale/AndroidStudioProjects/Howdy/app/build/intermediates/res/merged/debug/mipmap-hdpi/hi_launcher.png",
+        "source": "/Users/rachhale/AndroidStudioProjects/Howdy/app/src/main/res/mipmap-hdpi/hi_launcher.png"
+    }
+]
