@@ -5,6 +5,9 @@
     <string name="select_friend">Choose your buddy</string>
     <string name="message">Howdy!</string>
     <string name="sent">Howdy Sent!</string>
+    <string name="emptyLatestHowdy">No Howdies sent recently</string>
+    <string name="latestHowdyFormat">Last Howdy sent to %1$s %2$s</string>
+    <string name="dateFormat">\'on\' MM/dd/yyy \'at\' hh:mma</string>
     <string name="howdy_error">Howdy send failed, please try again later!</string>
     <color name="blue">#006da7</color>
 </resources>
