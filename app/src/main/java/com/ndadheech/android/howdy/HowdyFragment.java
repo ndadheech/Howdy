@@ -67,7 +67,7 @@ public class HowdyFragment extends Fragment {
                 ContactsContract.Contacts.CONTENT_URI);
 
         mSelectFriend = (Button) v.findViewById(R.id.select_friend);
-        if(savedFriendName!=null){
+        if(savedFriendName != null){
             mSelectFriend.setText(mFriend.getFriendName());
         }
         mSelectFriend.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +122,7 @@ public class HowdyFragment extends Fragment {
         } finally {
             saveHowdy();
             setLatestHowdy();
+            mSelectFriend.setText(getString(R.string.select_friend));
         }
     }
 
