@@ -6,22 +6,22 @@ package com.ndadheech.android.howdy;
  * @author ndadheech
  */
 public class Friend {
-    private String friendName;
-    private String phoneNumber;
+    private String mFriendName;
+    private String mPhoneNumber;
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return mPhoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.mPhoneNumber = phoneNumber;
     }
 
     public String getFriendName() {
-        return friendName;
+        return mFriendName;
     }
 
     public void setFriendName(String friendName) {
-        this.friendName = friendName;
+        this.mFriendName = friendName;
     }
 }

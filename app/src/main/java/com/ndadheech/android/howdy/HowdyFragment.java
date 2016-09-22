@@ -13,7 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Date;
 
 /**
  * Copyright Nibha Dadheech
@@ -30,14 +33,17 @@ public class HowdyFragment extends Fragment {
     private String savedFriendPhoneNumber;
     private Button mSendButton;
     private Button mSelectFriend;
-    private Friend friend;
+    private Friend mFriend;
+    private String mLastHowdySentFormat;
+    private String mHowdyDateFormat;
+    private TextView mLastHowdySent;
 
     @Override
     public void onSaveInstanceState(final Bundle saveState) {
         super.onSaveInstanceState(saveState);
-        if (friend != null) {
-            saveState.putString(SAVED_STATE_FRIEND_NAME, friend.getFriendName());
-            saveState.putString(SAVED_STATE_FRIEND_PHONE_NUMBER, friend.getPhoneNumber());
+        if (mFriend != null) {
+            saveState.putString(SAVED_STATE_FRIEND_NAME, mFriend.getFriendName());
+            saveState.putString(SAVED_STATE_FRIEND_PHONE_NUMBER, mFriend.getPhoneNumber());
         }
     }
 
@@ -46,14 +52,14 @@ public class HowdyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Retrieve saved data on rotate or restore
         Log.d(TAG, "CreatedView Invoked");
-        if(friend == null)
-            friend = new Friend();
+        if(mFriend == null)
+            mFriend = new Friend();
 
-        if(savedInstanceState != null && savedInstanceState.getString(SAVED_STATE_FRIEND_NAME) != null){
+        if(savedInstanceState != null){
             savedFriendName = savedInstanceState.getString(SAVED_STATE_FRIEND_NAME);
             savedFriendPhoneNumber = savedInstanceState.getString(SAVED_STATE_FRIEND_PHONE_NUMBER);
-            friend.setFriendName(savedFriendName);
-            friend.setPhoneNumber(savedFriendPhoneNumber);
+            mFriend.setFriendName(savedFriendName);
+            mFriend.setPhoneNumber(savedFriendPhoneNumber);
         }
 
         View v = inflater.inflate(R.layout.fragment_howdy, container, false);
@@ -61,8 +67,8 @@ public class HowdyFragment extends Fragment {
                 ContactsContract.Contacts.CONTENT_URI);
 
         mSelectFriend = (Button) v.findViewById(R.id.select_friend);
-        if(savedFriendName!=null){
-            mSelectFriend.setText(friend.getFriendName());
+        if(savedFriendName != null){
+            mSelectFriend.setText(mFriend.getFriendName());
         }
         mSelectFriend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,13 +81,22 @@ public class HowdyFragment extends Fragment {
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (friend.getPhoneNumber() != null) {
+                if (mFriend.getPhoneNumber() != null) {
                     sendHowdy();
                 } else {
                     sendCustomizedHowdyWithoutPhoneNumber();
                 }
             }
         });
+
+        mHowdyDateFormat = getString(R.string.dateFormat);
+        mLastHowdySentFormat = getString(R.string.latestHowdyFormat);
+        mLastHowdySent = (TextView) v.findViewById(R.id.last_howdy_sent);
+        String lastHowdyText = HowdyLab.get(getContext()).getLatestHowdy(mLastHowdySentFormat, mHowdyDateFormat);
+        if (lastHowdyText == null) {
+            lastHowdyText = getString(R.string.emptyLatestHowdy);
+        }
+        mLastHowdySent.setText(lastHowdyText);
 
         return v;
     }
@@ -90,20 +105,24 @@ public class HowdyFragment extends Fragment {
      * Method responsible for sending howdy message
      * @return true if message sent successfully, false otherwise
      */
-    private void sendHowdy(){
+    private void sendHowdy() {
+        Log.d(TAG, "Sending 'Howdy' to " + mFriend.getFriendName());
         SmsManager smsManager;
         try {
             smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(friend.getPhoneNumber(), null, getString(R.string.message), null, null);
+            smsManager.sendTextMessage(mFriend.getPhoneNumber(), null, getString(R.string.message), null, null);
             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.sent),
                     Toast.LENGTH_LONG).show();
+            Log.d(TAG, "Successfully sent 'Howdy' to " + mFriend.getFriendName());
         } catch (Exception e) {
             Toast.makeText(getActivity().getApplicationContext(),
                     getString(R.string.howdy_error),
                     Toast.LENGTH_LONG).show();
             e.printStackTrace();
-        }finally {
-            smsManager = null;
+        } finally {
+            saveHowdy();
+            setLatestHowdy();
+            mSelectFriend.setText(getString(R.string.select_friend));
         }
     }
 
@@ -149,7 +168,7 @@ public class HowdyFragment extends Fragment {
             int nameColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
             String name = cursor.getString(nameColumnIndex);
 
-            friend.setFriendName(name);
+            mFriend.setFriendName(name);
             mSelectFriend.setText(name);
 
             if(name != null){
@@ -191,6 +210,20 @@ public class HowdyFragment extends Fragment {
                 }
             }
         }
-        friend.setPhoneNumber(phoneNumber);
+        mFriend.setPhoneNumber(phoneNumber);
+    }
+
+    private void saveHowdy () {
+        Howdy howdy = new Howdy(mFriend, new Date());
+        Log.d(TAG, "Saving howdy to " + mFriend.getFriendName() + " in SQLite database");
+        HowdyLab.get(getContext()).addHowdy(howdy);
+    }
+
+    private void setLatestHowdy() {
+        String lastHowdyText = HowdyLab.get(getContext()).getLatestHowdy(mLastHowdySentFormat, mHowdyDateFormat);
+        if (lastHowdyText == null) {
+            lastHowdyText = getString(R.string.emptyLatestHowdy);
+        }
+        mLastHowdySent.setText(lastHowdyText);
     }
 }
